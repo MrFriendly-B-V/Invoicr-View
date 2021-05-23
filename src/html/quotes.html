@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="MrFriendly Invoicr">
+        <title> Invoicr | Quotes </title>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="/dist/dist.js"></script>
+    </head>
+    <body>
+        <nav>
+            <div class="nav-container">
+                <a href="https://mrfriendly.nl/"><img alt="logo" class="logo" src="/img/logo.png"></a>
+                <ul class="navlist">
+                    <li><a href="https://dashboard.intern.mrfriendly.nl" class="active"> Dashboard </a></li>
+                    <li><a href="https://mrfriendly.nl"> Website </a></li>
+                </ul>
+            </div>
+            <div class="subnav-container">
+                <ul class="subnav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="quotes.html">Quotes</a></li>
+                </ul>
+            </div>
+        </nav>
+        <main>
+            <div>
+                <button id="newQuoteBtn" class="styledBtn">New</button>
+                <table class="tableview" id="quotes-table">
+                    <tr class="nohover">
+                        <th>Quote ID</th>
+                        <th>Receiver</th>
+                        <th>Topic</th>
+                        <th>Creation Date</th>
+                        <th>Expiry Date</th>
+                        <th></th>
+                    </tr>
+                </table>
+            </div>
+        </main>
+        <script>
+            Invoicr.loadQuotesPage();
+        </script>
+    </body>
+</html>

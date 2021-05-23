@@ -1,0 +1,46 @@
+@use "./util/fonts" as *;
+
+.pdfPageTitle, .pdfSectionTitle {
+    @include set-font();
+}
+
+.pdfHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;    
+
+    @include set-font();
+
+    #pdfAddressing {
+        margin-right: 5rem;
+    }
+
+    .readOnly {
+        background-color: lightgray;
+    }
+}
+
+.pdfProducts {
+    width: 80vw;
+
+    table {
+        width: 100%;
+
+        tr {        
+            width: 100%;
+
+            th,td {
+                @include set-font();
+                text-align: left;
+
+                .singleChar {
+                    width: 4ch;
+                }
+            }
+
+            th {
+                font-weight: bold;
+            }
+        }
+    }
+}

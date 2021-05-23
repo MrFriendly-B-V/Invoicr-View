@@ -1,0 +1,28 @@
+@use "./util/fonts" as *;
+@use "./util/color" as *;
+
+.tableview {
+    tr {
+        th,td {
+            @include set-font();
+            text-align: left;
+            padding: 3px 20px 3px 0px;
+        }
+
+        th {
+            font-weight: bold;
+        }
+    }
+
+    tr:hover:not(.nohover) {
+        cursor: pointer;
+        background-color: darken($bgwhite, 15%);
+        border: 1px solid darken($bgwhite, 15%);   
+        border-radius: 2px;
+        transition: .5s ease;
+
+        td {
+            background-color: darken($bgwhite, 15%);
+        }
+    }
+}

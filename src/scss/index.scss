@@ -1,0 +1,44 @@
+@forward "./nav.scss";
+@forward "./tableview.scss";
+@forward "./pdfview.scss";
+
+@use "./util/color" as *;
+@use "./util/fonts" as *;
+
+html, body {
+    background-color: #282c34;
+    width: 100%;
+    margin: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & > div {
+        padding: 1rem;
+        margin-top: 3rem;
+        background-color: $bgwhite;
+        border: 1px solid $bgwhite;
+        border-radius: 5px;
+        width: auto;
+    }
+
+    .styledBtn {
+        background-color: #333;
+        border: 1px solid #333;
+        color: $bgwhite;
+        border-radius: 2px;
+        padding: 4px;
+
+        @include set-font();
+    }
+
+    .styledBtn:hover {
+        background-color: #111;
+        border: 1px solid #111;
+        cursor: pointer;
+        transition: .5s ease;
+    }
+}
