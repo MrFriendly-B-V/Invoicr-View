@@ -25,6 +25,10 @@ interface IdResponse {
     id: string
 }
 
+class HTMLIndexedElement extends HTMLTableRowElement {
+    index: number
+}
+
 export async function loadQuotePage() {
     let quoteId = findGetParameter("quoteId");
     let newQuote = findGetParameter("new");
@@ -99,7 +103,7 @@ function drawProductsTable(products: IItemRow[]) {
 
     for(let i = 0; i < products.length; i++) {
         let itemRow = products[i];
-        let tableRow = PDF_PRODUCTS.insertRow();
+        let tableRow = <HTMLIndexedElement> PDF_PRODUCTS.insertRow();
         
         let indexInput = document.createElement('input');
         indexInput.type = "number";
@@ -107,14 +111,36 @@ function drawProductsTable(products: IItemRow[]) {
 
         indexInput.value = (i+1).toString();
         itemRow.index = i;
+        tableRow.setAttribute("data-order-index", i.toString());
 
         indexInput.min = "1";
+        tableRow.index = i;
         indexInput.classList.value = "singleChar";
         indexInput.addEventListener("change", (_e) => {
-            let newIndex = indexInput.value;
-            indexInput.value = newIndex; 
-            tableRow.remove();
-            PDF_PRODUCTS.insertBefore(tableRow, tableRow.nextSibling)
+            let oldIndex = tableRow.index;
+            let newIndex = Number.parseInt(indexInput.value) -1;
+
+            //Old index is smaller, so the item moved up the list
+            if(oldIndex < newIndex && newIndex != 0) {
+                let prevSibling = <HTMLIndexedElement> PDF_PRODUCTS.querySelector('[data-order-index="' + newIndex + '"]');
+                prevSibling.index = oldIndex -1;
+                prevSibling.getElementById() = oldIndex.toString();
+                prevSibling.setAttribute('data-order-index', (oldIndex -1).toString());
+
+                indexInput.index = newIndex +1;
+                indexInput.value = newIndex.toString();
+                indexInput.setAttribute('data-order-index', (newIndex +1).toString());
+
+                console.log(indexInput.index);
+                console.log(prevSibling.index);
+
+                // item (input) -> td -> tr
+                PDF_PRODUCTS.tBodies[0].insertBefore(indexInput.parentElement.parentElement, prevSibling);
+                
+                prevSibling.style.backgroundColor = "red";
+                indexInput.style.backgroundColor = "green";
+            }
+
         });
 
         let indexCell = document.createElement('td');
